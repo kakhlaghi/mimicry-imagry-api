@@ -20,12 +20,7 @@ class Api::ImagesController < ApplicationController
 
     private
 
-    def set_image
-
-    end
-
-
-    def images_params
+    def image_params
         params.require(:image).permit(:imgur_id, :user_id)
     end
 
