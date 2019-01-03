@@ -3,5 +3,7 @@ Rails.application.routes.draw do
   namespace :api do
     resources :images, except: [:new, :edit]
     resources :users, only: [:create]
+    
   end
+
 end
