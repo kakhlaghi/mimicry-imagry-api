@@ -6,3 +6,4 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+images = Image.create([{imgur_id: 'vM8kNDl', user_id: 1}, {imgur_id: "H0f627g",user_id: 1}])
