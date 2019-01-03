@@ -1,14 +1,9 @@
-# app/controllers/private_controller.rb
+# app/controllers/public_controller.rb
 
 # frozen_string_literal: true
-class PrivateController < ActionController::API
-    include Secured
-  
-    def private
-      render json: 'Hello from a private endpoint! You need to be authenticated to see this.'
-    end
-  
-    def private_scoped
-      render json: { message: 'Hello from a private endpoint! You need to be authenticated and have a scope of read:messages to see this.' }
+class PublicController < ActionController::API
+    # This route doesn't need authentication
+    def public
+      render json: { message: "Hello from a public endpoint! You don't need to be authenticated to see this." }
     end
   end
