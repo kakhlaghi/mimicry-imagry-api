@@ -1,7 +1,8 @@
 class Api::ImagesController < ApplicationController
 
     def index
-        render json: Image.all
+        @user = User.find_by(id: params[:user_id])
+        render json: Image.order('id DESC')
     end
 
     def create
