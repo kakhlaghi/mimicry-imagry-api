@@ -35,6 +35,8 @@ gem 'knock'
 gem 'dotenv-rails'
 gem 'active_model_serializers', '~> 0.10.0'
 
+gem 'foreman', '~> 0.82.0'
+
 
 
 
