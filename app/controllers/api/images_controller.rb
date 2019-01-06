@@ -18,6 +18,13 @@ class Api::ImagesController < ApplicationController
         render json: Image.find_by(id: params[:id])
     end
 
+    def update
+        image = Image.find(params[:id])
+        image.update_attributes(image_params)
+        render json: image
+    end
+
+
 
     private
 
