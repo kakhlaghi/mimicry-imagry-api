@@ -1,4 +1,6 @@
 class Api::ImagesController < ApplicationController
+    before_action :authenticate_user
+    before_action :set_image, only: [:show, :update, :destroy]
 
     def index
         @user = User.find_by(id: params[:user_id])
