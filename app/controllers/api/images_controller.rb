@@ -3,8 +3,10 @@ class Api::ImagesController < ApplicationController
     before_action :set_image, only: [:show, :update, :destroy]
 
     def index
-        @user = User.find_by(id: params[:user_id])
-        render json: Image.order('id DESC')
+        if current_user
+            @user = User.find_by(id: params[:user_id])
+            render json: Image.order('id DESC')
+        end   
     end
 
     def create

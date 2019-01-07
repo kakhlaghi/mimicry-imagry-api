@@ -4,6 +4,7 @@ Rails.application.routes.draw do
     resources :images, except: [:new, :edit]
     #resources :users, only: [:create]
     post 'user_token' => 'user_token#create'
+    post '/login', to: "sessions#create"  
 
   end
 
