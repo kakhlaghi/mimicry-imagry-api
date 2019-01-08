@@ -1,9 +1,12 @@
 require 'pry'
+require 'jwt'
+require 'Auth'
+
 class Api::SessionsController < ApplicationController
 
-    def create
-        user = User.find_by(name: login_params[:name])
-    end
+   # def create
+    #    user = User.find_by(name: login_params[:name])
+   # end
 
     def login
         user = User.find_by(name: login_params[:name])

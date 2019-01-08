@@ -1,21 +1,23 @@
 class Api::UsersController < ApplicationController
 
-    def create
-        user = User.new(params)
-        if user.save
-            #render json: response, status: 200
-            render json: {token: Auth.createToken(user)}
-        else
-            render json: {message: user.errors.full_messages}, status: 400
+   # def create
+    #    user = User.new(params)
+     #   if user.save
+      #      #render json: response, status: 200
+       #     render json: {token: Auth.createToken(user)}
+        #else
+         #   render json: {message: user.errors.full_messages}, status: 400
 
-        end
+#        end
 
     end
 
     def signup
         user = User.new(params)
         if user.save
-            render json: response, status: 200
+            #render json: response, status: 200
+            render json: {token: Auth.createToken({name: user.name, id: user.id, email: user.email})}
+
         else
             render json: {message: user.errors.full_messages}, status: 400
 
