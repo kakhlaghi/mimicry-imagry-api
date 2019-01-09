@@ -3,8 +3,14 @@ class Api::ImagesController < ApplicationController
     before_action :set_image, only: [:show, :update, :destroy]
 
     def index
-        @user = User.find_by(id: params[:user_id])
-        render json: Image.order('id DESC')
+        token = request.env["HTTP_AUTHORIZATION"]
+       if token && Auth.decode_token(some_attribute) 
+            @user = User.find_by(id: params[:user_id])
+            render json: Image.order('id DESC')
+       else
+            render json: { error: {message: "Need Valid Token"}}, status: 500
+       end
+
     end
 
     def create
