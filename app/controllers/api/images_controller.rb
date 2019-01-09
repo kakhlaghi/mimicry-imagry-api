@@ -18,7 +18,7 @@ class Api::ImagesController < ApplicationController
         if image.save
             render json: image
         else
-            render json: {message: image.errors}, status: 400
+            render json: {message: image.errors.full_messages}, status: 400
         end
     end
 

@@ -1,3 +1,5 @@
+require 'auth'
+require 'pry'
 class Api::UsersController < ApplicationController
 
    # def create
@@ -10,13 +12,13 @@ class Api::UsersController < ApplicationController
 
 #        end
 
-    end
+    #end
 
     def signup
-        user = User.new(params)
+        user = User.new(user_params)
         if user.save
             #render json: response, status: 200
-            render json: {token: Auth.createToken({name: user.name, id: user.id, email: user.email})}
+            render json: {token: Auth.create_token({name: user.name, id: user.id, email: user.email})}
 
         else
             render json: {message: user.errors.full_messages}, status: 400
@@ -29,7 +31,7 @@ class Api::UsersController < ApplicationController
     private
 
     def user_params
-        params_require(:user).permit(:name, :email, :password)
+        params.require(:user).permit(:name, :email, :password)
     end
 
 end
