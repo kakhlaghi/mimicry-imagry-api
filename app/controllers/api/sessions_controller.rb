@@ -9,9 +9,10 @@ class Api::SessionsController < ApplicationController
 
     def login
         user = User.find_by(name: login_params[:name])
-        if user && user.authenticate(params[:password])
+        if user && user.authenticate(params[:user][:password])
             render json: {token: Auth.create_token({name: user.name, email: user.email, id: user.id}) }
         else
+            binding.pry
             render json: { errors: user.errors.full_messages }, status: 500
         end
 
