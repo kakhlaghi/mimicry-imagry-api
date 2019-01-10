@@ -1,13 +1,17 @@
-require 'Faraday'
+require 'faraday'
+require 'pry'
 
 class Api::ImagesController < ApplicationController
    
 
     def index
-
-        Faraday.get 'https://api.imgur.com/3/gallery/t/gifs' do |req|
-            req.params
-        end   
+        apiKey = '8292cf41c20143c'
+        clientSecret = '5b7a33d64f8468836566e7101479c1a8bd7a3c90'
+        response = Faraday.get 'https://api.imgur.com/3/gallery/t/gifs' do |req|
+            req.params['client_id'] = apiKey
+            req.params['client_secret'] = clientSecret
+         end   
+         render json: response.body
        # token = request.env["HTTP_AUTHORIZATION"]
        #if token && Auth.decode_token(token) 
         #    @user = User.find_by(id: params[:user_id])
