@@ -1,15 +1,20 @@
+require 'Faraday'
+
 class Api::ImagesController < ApplicationController
-    before_action :authenticate_user
-    before_action :set_image, only: [:show, :update, :destroy]
+   
 
     def index
-        token = request.env["HTTP_AUTHORIZATION"]
-       if token && Auth.decode_token(some_attribute) 
-            @user = User.find_by(id: params[:user_id])
-            render json: Image.order('id DESC')
-       else
-            render json: { error: {message: "Need Valid Token"}}, status: 500
-       end
+
+        Faraday.get 'https://api.imgur.com/3/gallery/t/gifs' do |req|
+            req.params
+        end   
+       # token = request.env["HTTP_AUTHORIZATION"]
+       #if token && Auth.decode_token(token) 
+        #    @user = User.find_by(id: params[:user_id])
+         #   render json: Image.order('id DESC')
+       #else
+        #    render json: { error: {message: "Need Valid Token"}}, status: 500
+       #end
 
     end
 
@@ -31,7 +36,6 @@ class Api::ImagesController < ApplicationController
         image.update_attributes(image_params)
         render json: image
     end
-
 
 
     private
